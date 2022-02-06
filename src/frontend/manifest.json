@@ -1,0 +1,10 @@
+{
+    "name": "Pixel Watch Face",
+    "short_name": "Watch Face",
+    "theme_color": "#2196f3",
+    "background_color": "#191c1a",
+    "display": "standalone",
+    "orientation": "portrait",
+    "scope": "/",
+    "start_url": "/"
+}
