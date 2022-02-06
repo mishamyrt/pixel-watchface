@@ -23,8 +23,8 @@ const app = express()
 
 if (process.env.PRODUCTION) {
     https.createServer({
-        key: '/etc/letsencrypt/live/pixel.myrt.co/privkey.pem',
-        cert: '/etc/letsencrypt/live/pixel.myrt.co/fullchain.pem'
+        key: './ssl/privkey.pem',
+        cert: './ssl/cert.pem'
     }, app).listen(443);
 } else {
     http.createServer(app).listen(8080)
