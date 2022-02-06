@@ -3,6 +3,9 @@ import asyncHandler from 'express-async-handler'
 import { PassThrough } from "stream"
 import { render } from './render'
 
+const PORT = 80
+const HOST = '0.0.0.0'
+
 express()
     .use(express.json())
     .use('/', express.static('src/frontend'))
@@ -15,6 +18,6 @@ express()
         readStream.end(watchface);
         readStream.pipe(res);
     }))
-    .listen(8080, '0.0.0.0', () => {
-        
+    .listen(PORT, HOST, () => {
+        console.log(`Started on ${HOST}:${PORT}`)
     })
