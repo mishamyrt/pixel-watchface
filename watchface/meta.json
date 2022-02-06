@@ -1,0 +1,106 @@
+{
+    "background": {
+      "image": {
+        "x": "0",
+        "y": "0",
+        "imageIndex": "0"
+      }
+    },
+    "time": {
+      "hours": {
+        "tens": {
+          "x": "1",
+          "y": "156",
+          "imageIndex": "11",
+          "imageCount": "6"
+        },
+        "ones": {
+          "x": "78",
+          "y": "156",
+          "imageIndex": "21",
+          "imageCount": "10"
+        }
+      },
+      "minutes": {
+        "tens": {
+          "x": "1",
+          "y": "265",
+          "imageIndex": "11",
+          "imageCount": "6"
+        },
+        "ones": {
+          "x": "78",
+          "y": "265",
+          "imageIndex": "21",
+          "imageCount": "10"
+        }
+      },
+      "unknown11": "0"
+    },
+    "activity": {
+      "pulse": {
+        "number": {
+          "topLeftX": "41",
+          "topLeftY": "429",
+          "bottomRightX": "111",
+          "bottomRightY": "456",
+          "alignment": "72",
+          "spacingX": "0",
+          "spacingY": "0",
+          "imageIndex": "1",
+          "imageCount": "10"
+        }
+      },
+      "unknown7": "0"
+    },
+    "date": {
+      "monthAndDay": {
+        "separateMonthAndDay": {
+          "dayNew": {
+            "topLeftX": "94",
+            "topLeftY": "106",
+            "bottomRightX": "141",
+            "bottomRightY": "130",
+            "alignment": "2",
+            "spacingX": "0",
+            "spacingY": "0",
+            "imageIndex": "1",
+            "imageCount": "10"
+          }
+        },
+        "twoDigitsDay": "0",
+        "twoDigitsMonthNew": "1"
+      },
+      "enWeekDays": {
+        "x": "7",
+        "y": "106",
+        "imageIndex": "31",
+        "imageCount": "7"
+      }
+    },
+    "status": {
+      "lock": {
+        "coordinates": {
+          "x1": "10",
+          "y1": "54"
+        },
+        "imageIndexOff": "20"
+      },
+      "bluetooth": {
+        "coordinates": {
+          "x1": "106",
+          "y1": "54"
+        },
+        "imageIndexOn": "19",
+        "imageIndexOff": "18"
+      }
+    },
+    "battery": {
+      "batteryIcon": {
+        "x": "107",
+        "y": "54",
+        "imageIndex": "17",
+        "imageCount": "1"
+      }
+    }
+  }

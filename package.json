@@ -1,0 +1,28 @@
+{
+  "name": "miband-watchface-tool",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npx tsc && node app/server",
+    "parse": "npx tsc && node app/parse",
+    "pack": "npx tsc && node app/pack",
+    "render": "npx tsc && node app/render"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/node": "^17.0.15",
+    "@types/sharp": "^0.29.5",
+    "typescript": "^4.5.5"
+  },
+  "dependencies": {
+    "express": "^4.17.2",
+    "express-async-handler": "^1.2.0",
+    "fast-png": "^6.1.0",
+    "sharp": "^0.30.0"
+  }
+}
