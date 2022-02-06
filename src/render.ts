@@ -2,7 +2,6 @@ import { lstat, readdir, readFile, writeFile } from 'fs/promises'
 import { join } from 'path'
 import { readTextFile } from './modules/file' 
 import { BandType, pack, Resource, Watchface } from './modules/watchface'
-import { decode } from 'fast-png'
 import sharp from 'sharp'
 
 const RESOURCE_DIR = 'watchface'
@@ -29,29 +28,6 @@ export async function collectResource(folder: string, hidden = false): Promise<s
     return result
 }
 
-// export function copyFiles(files) {
-//     return Promise.all(
-//         files.map(([oldPath, newPath]) => copyFile(oldPath, newPath))
-//     )
-// }
-
-// async function readResource (): Promise<Resource[]> {
-//     const files = await readdir(RESOURCE_DIR)
-//     const names = files
-//         .filter(name => name.endsWith('.png'))
-//         .sort((a, b) => extractNumber(a) - extractNumber(b))
-//     const buffers = await Promise.all(
-//         names.map(name => readFile(join(OUT_DIR, name)))
-//     ) 
-//     return buffers
-//         .map(buffer => decode(buffer))
-//         .map(image => ({
-//             width: image.width,
-//             height: image.height,
-//             data: image.data as Uint8Array
-//         }))
-// }
-
 function replaceColor(color: string) {
     return (s: string) => s.replaceAll(ORIGINAL_COLOR, color)
 }
@@ -66,27 +42,29 @@ function renderSVG (content: string): Promise<Buffer> {
         .toBuffer()
 }
 
-function bufferToResource(buffer: Buffer): Resource {
-    const image = decode(buffer)
-    console.log(image.depth, image.channels)
+async function bufferToResource(buffer: Buffer): Promise<Resource> {
+    const { data, info } = await sharp(buffer)
+        .raw()
+        .toBuffer({ resolveWithObject: true })
     return {
-        width: image.width,
-        height: image.height,
-        data: new Uint8Array(image.data)
+        width: info.width,
+        height: info.height,
+        data: new Uint8Array(data)
     }
 }
+
+function waitAll<T>(waits: Promise<T>[]): Promise<T[]> {
+    return Promise.all(waits)
+} 
 
 function generateResources (color: string) {
     return collectResource(RESOURCE_DIR)
         .then(readTextFiles)
         .then(contents => contents.map(replaceColor(color)))
         .then(svgs => svgs.map(renderSVG))
-        .then(waits => Promise.all(waits))
-        // .then(async pngs => {
-        //     await pngs.map((png, index) => writeFile(`out/${index}.png`, png))
-        //     return pngs
-        // })
+        .then(waitAll)
         .then(buffers => buffers.map(buffer => bufferToResource(buffer)))
+        .then(waitAll)
 }
 
 export async function render(color: string) {
