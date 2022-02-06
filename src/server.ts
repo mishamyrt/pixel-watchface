@@ -17,7 +17,7 @@ const app = express()
     .use('/render', asyncHandler(async (req, res) => {
         const color = req.body.color as string
         const watchface = await render(color)
-        console.log(watchface)
+        console.log(`Rendered ${color}`)
         const readStream = new PassThrough();
         res.set("Content-Type", "application/binary");
         readStream.end(watchface);
