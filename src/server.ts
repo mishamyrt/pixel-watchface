@@ -16,6 +16,10 @@ const app = express()
     .use('/', express.static('src/frontend'))
     .use('/render', asyncHandler(async (req, res) => {
         const color = req.body.color as string
+        if (color.length > 8) {
+            res.status(400)
+            res.send('')
+        }
         const watchface = await render(color)
         console.log(`Rendered ${color}`)
         const readStream = new PassThrough();
