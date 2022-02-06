@@ -19,6 +19,7 @@ const app = express()
         if (color.length > 8) {
             res.status(400)
             res.send('')
+            return
         }
         const watchface = await render(color)
         console.log(`Rendered ${color}`)
