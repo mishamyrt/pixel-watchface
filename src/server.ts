@@ -4,9 +4,12 @@ import { PassThrough } from "stream"
 import { render } from './render'
 import http from 'http'
 import https from 'https'
+import { readTextFile } from './modules/file'
 
 const PORT = 80
 const HOST = '0.0.0.0'
+const KEY = './ssl/privkey.pem'
+const CERT = './ssl/cert.pem'
 
 const app = express()
     .use(express.json())
@@ -21,11 +24,15 @@ const app = express()
         readStream.pipe(res);
     }))
 
-if (process.env.PRODUCTION) {
-    https.createServer({
-        key: './ssl/privkey.pem',
-        cert: './ssl/cert.pem'
-    }, app).listen(443);
-} else {
-    http.createServer(app).listen(8080)
+async function main() {
+    if (process.env.PRODUCTION) {
+        https.createServer({
+            key: await readTextFile(KEY),
+            cert: await readTextFile(CERT)
+        }, app).listen(443);
+    } else {
+        http.createServer(app).listen(8080)
+    }
 }
+
+main()
