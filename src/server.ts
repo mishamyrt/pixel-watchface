@@ -2,11 +2,13 @@ import express from 'express'
 import asyncHandler from 'express-async-handler'
 import { PassThrough } from "stream"
 import { render } from './render'
+import http from 'http'
+import https from 'https'
 
 const PORT = 80
 const HOST = '0.0.0.0'
 
-express()
+const app = express()
     .use(express.json())
     .use('/', express.static('src/frontend'))
     .use('/render', asyncHandler(async (req, res) => {
@@ -18,6 +20,12 @@ express()
         readStream.end(watchface);
         readStream.pipe(res);
     }))
-    .listen(PORT, HOST, () => {
-        console.log(`Started on ${HOST}:${PORT}`)
-    })
+
+if (process.env.PRODUCTION) {
+    https.createServer({
+        key: '/etc/letsencrypt/live/pixel.myrt.co/privkey.pem',
+        cert: '/etc/letsencrypt/live/pixel.myrt.co/fullchain.pem'
+    }, app).listen(443);
+} else {
+    http.createServer(app).listen(8080)
+}
