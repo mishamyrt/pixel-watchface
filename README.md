@@ -9,3 +9,11 @@ npm ci
 npm run build
 npm start
 ```
+
+## Production run
+
+```sh
+npm ci
+npm run build
+PRODUCTION=true npm start
+```
