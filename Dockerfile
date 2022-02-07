@@ -10,4 +10,5 @@ COPY --from=builder /home/dist /opt/app/dist
 WORKDIR /opt/app
 RUN npm ci --production
 EXPOSE 443
+EXPOSE 80
 CMD ["npm", "start"]
