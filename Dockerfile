@@ -8,5 +8,6 @@ FROM node:latest
 COPY ./package*.json /opt/app/
 COPY --from=builder /home/dist /opt/app/dist
 WORKDIR /opt/app
+RUN npm ci --production
 EXPOSE 443
 CMD ["npm", "start"]
