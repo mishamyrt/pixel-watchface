@@ -5,7 +5,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npm run build:frontend && npm run build:backend",
-    "build:frontend": "npx parcel build --dist-dir dist/assets src/index.html",
+    "build:frontend": "parcel build --dist-dir dist/assets src/index.html",
     "build:backend": "cd server && npx tsc && cp -rf dist/ ../dist",
     "start": "node dist/app",
     "dev": "node scripts/dev",
