@@ -19,4 +19,6 @@ jobs:
       run: npm run docker:stop
 
     - name: Start app
+      env:
+        SSL_FOLDER: /etc/letsencrypt/live/pixel.myrt.co
       run: npm run docker:start
