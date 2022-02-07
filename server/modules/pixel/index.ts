@@ -1,14 +1,13 @@
 import { readFile } from 'fs/promises'
 import { join } from 'path'
-import { collectResource, readTextFile } from './modules/file'
-import { BandType, pack, Resource, Watchface } from './modules/watchface'
+import { collectResource, readTextFile } from '../file'
+import { BandType, pack, Resource, Watchface } from '../watchface'
 import sharp from 'sharp'
 
 const RESOURCE_DIR = 'watchface'
-const ORIGINAL_COLOR = '#FFDDAA'
 
 function replaceColor (color: string) {
-  return (s: string) => s.replaceAll(ORIGINAL_COLOR, color)
+  return (s: string) => s.replace(/#FFDDAA/, color)
 }
 
 function readTextFiles (paths: string[]) {
