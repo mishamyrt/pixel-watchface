@@ -1,32 +1,11 @@
-import { lstat, readdir, readFile, writeFile } from 'fs/promises'
+import { readFile } from 'fs/promises'
 import { join } from 'path'
-import { readTextFile } from './modules/file' 
+import { collectResource, readTextFile } from './modules/file' 
 import { BandType, pack, Resource, Watchface } from './modules/watchface'
 import sharp from 'sharp'
 
 const RESOURCE_DIR = 'watchface'
 const ORIGINAL_COLOR = '#FFDDAA'
-
-/**
- * Collects all files in directory
- */
-export async function collectResource(folder: string, hidden = false): Promise<string[]> {
-    const result = []
-    const files = await readdir(folder)
-    for (const file of files) {
-        if (file.endsWith('.json') || (!hidden && file.startsWith('.'))) {
-            continue
-        }
-        const path = join(folder, file)
-        const stat = await lstat(path)
-        if (stat.isDirectory()) {
-            result.push(...await collectResource(path))
-        } else {
-            result.push(path)
-        }
-    }
-    return result
-}
 
 function replaceColor(color: string) {
     return (s: string) => s.replaceAll(ORIGINAL_COLOR, color)

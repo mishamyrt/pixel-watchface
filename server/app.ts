@@ -6,14 +6,14 @@ import http from 'http'
 import https from 'https'
 import { readTextFile } from './modules/file'
 
-const PORT = 80
-const HOST = '0.0.0.0'
-const KEY = './ssl/privkey.pem'
-const CERT = './ssl/cert.pem'
+const DEV_PORT = 8080
+const PRIVATE_KEY_PATH = './ssl/privkey.pem'
+const CERTIFICATE_PATH = './ssl/cert.pem'
 
-const app = express()
+async function main() {
+    const app = express()
     .use(express.json())
-    .use('/', express.static('src/frontend'))
+    .use('/', express.static('dist/assets'))
     .use('/render', asyncHandler(async (req, res) => {
         const color = req.body.color as string
         if (color.length > 8) {
@@ -28,15 +28,13 @@ const app = express()
         readStream.end(watchface);
         readStream.pipe(res);
     }))
-
-async function main() {
     if (process.env.PRODUCTION) {
         https.createServer({
-            key: await readTextFile(KEY),
-            cert: await readTextFile(CERT)
+            key: await readTextFile(PRIVATE_KEY_PATH),
+            cert: await readTextFile(CERTIFICATE_PATH)
         }, app).listen(443);
     } else {
-        http.createServer(app).listen(8080)
+        http.createServer(app).listen(DEV_PORT)
     }
 }
 
