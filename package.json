@@ -6,12 +6,12 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npm run build:frontend && npm run build:backend",
     "build:frontend": "parcel build --dist-dir dist/assets src/index.html",
-    "build:backend": "cd server && npx tsc && cp -rf dist/ ../dist",
+    "build:backend": "cd server && tsc && cp -rf dist/ ../dist",
     "start": "node dist/app",
     "dev": "node scripts/dev",
-    "parse": "npx tsc && node app/parse",
-    "pack": "npx tsc && node app/pack",
-    "render": "npx tsc && node app/render"
+    "parse": "tsc && node app/parse",
+    "pack": "tsc && node app/pack",
+    "render": "tsc && node app/render"
   },
   "keywords": [],
   "author": "",
