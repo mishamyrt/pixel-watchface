@@ -6,6 +6,7 @@ RUN npm run build
 
 FROM node:latest
 COPY ./package*.json /opt/app/
+COPY ./watchface /opt/app/watchface
 COPY --from=builder /home/dist /opt/app/dist
 WORKDIR /opt/app
 RUN npm ci --production
