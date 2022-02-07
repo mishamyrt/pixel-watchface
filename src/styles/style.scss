@@ -1,0 +1,50 @@
+@import url(https://fonts.googleapis.com/css2?family=Google+Sans:wght@500);
+@import url('./modules/color-preset.scss');
+@import url('./modules/color-input.scss');
+@import url('./modules/preview.scss');
+
+* {
+    box-sizing: border-box;
+    transition: color .3s linear, background-color .3s linear, fill .3s linear;
+}
+
+body, html {
+    --text-color: rgba(255, 255, 255, 0.85);
+    font-family: 'Google Sans', sans-serif;
+    background-color: #191C1A;
+    color: var(--text-color);
+    font-size: 18px;
+    line-height: 32px;
+    padding: 0 10px;
+}
+
+h1 {
+    font-size: 50px;
+    line-height: 59px;
+    font-weight: 500;
+    margin-top: 50px;
+}
+
+p {
+    max-width: 400px;
+}
+
+button {
+    height: 52px;
+    font-family: 'Google Sans', sans-serif;
+    font-size: 16px;
+    color: #201A19;
+    margin: 0;
+    border: none;
+    border-radius: 26px;
+    background: var(--accent-color);
+    padding: 2px 26px;
+    font-weight: 500;
+}
+
+.actionContainer {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+    padding-bottom: 30px;
+}
