@@ -1,5 +1,6 @@
 import { downloadFile } from "./modules/file"
 import { ColorPresets } from "./modules/presets"
+import { initializePreview } from "./modules/preview"
 import { postJson } from "./modules/requests"
 
 const button = document.querySelector<HTMLButtonElement>('button')!
@@ -8,8 +9,14 @@ const theme = document.querySelector('meta[name="theme-color"]')!
 
 let currentColor = ''
 
+function updateAccentColor (color: string) {
+    currentColor = color
+    document.body.style.setProperty('--accent-color', color)
+    theme.setAttribute('content', color)
+}
+
 const presets = new ColorPresets(
-    [...document.querySelectorAll<HTMLInputElement>('.colorPreset')!]
+    [...document.querySelectorAll<HTMLInputElement>('.colorPresets-item')!]
 )
 presets.onChange(updateAccentColor)
 
@@ -17,13 +24,8 @@ input.onchange = () => {
     updateAccentColor(input.value)
 }
 
-function updateAccentColor (color: string) {
-    currentColor = color
-    document.body.style.setProperty('--accent-color', color);
-    theme.setAttribute('content', color);
-}
-
 updateAccentColor(currentColor)
+initializePreview()
 
 button.onclick = async () => {
     const res = await postJson('/render', {color: currentColor})
