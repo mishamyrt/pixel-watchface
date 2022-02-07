@@ -1,5 +1,5 @@
-export const SIGN_SIZE = 0x20;
-export const SIGN_STRING = "HMDIAL";
+export const SIGN_SIZE = 0x20
+export const SIGN_STRING = 'HMDIAL'
 
 export enum ParamFlag {
   NONE = 0,
@@ -23,6 +23,11 @@ export interface Color {
   a: number;
 }
 
+export interface ColorRaw extends Color {
+    u32: number
+    u24: number
+}
+
 export interface Param {
   id: number;
   flags: number;
@@ -34,7 +39,7 @@ export interface ParsedParam extends Param {
   size: number;
 }
 
-export type ParamMapType = "bool" | "color" | "array";
+export type ParamMapType = 'bool' | 'color' | 'array';
 
 export interface ParamMap {
   name: string;
@@ -47,7 +52,7 @@ export interface ParamTable {
 }
 
 export interface MappedParamTable {
-  [name: string]: any;
+  [name: string]: unknown;
 }
 
 export interface Resource {
@@ -66,6 +71,12 @@ export interface ParsedResource extends Resource {
   transparency: number;
 }
 
+export enum BandType {
+  BAND_4 = 345,
+  BAND_5 = 146,
+  BAND_6 = 148,
+}
+
 export interface Watchface {
   band: BandType;
   params: MappedParamTable;
@@ -76,16 +87,10 @@ export interface ParsedWatchface extends Watchface {
   resources: ParsedResource[];
 }
 
-export enum BandType {
-  BAND_4 = 345,
-  BAND_5 = 146,
-  BAND_6 = 148,
-}
-
 export const BAND_DIMS: {
   [num in BandType]: [number, number];
 } = {
   [BandType.BAND_4]: [120, 240],
   [BandType.BAND_5]: [126, 294],
-  [BandType.BAND_6]: [152, 486],
-};
+  [BandType.BAND_6]: [152, 486]
+}
