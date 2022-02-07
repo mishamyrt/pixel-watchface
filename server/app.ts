@@ -4,13 +4,13 @@ import { PassThrough } from "stream"
 import { render } from './render'
 import http from 'http'
 import https from 'https'
-import { readTextFile } from './modules/file'
+import { isPathExists, readTextFile } from './modules/file'
 
-const DEV_PORT = 8080
 const PRIVATE_KEY_PATH = './ssl/privkey.pem'
 const CERTIFICATE_PATH = './ssl/cert.pem'
 
 async function main() {
+    const isProduction = await isPathExists('./ssl')
     const app = express()
     .use(express.json())
     .use('/', express.static('dist/assets'))
@@ -28,13 +28,13 @@ async function main() {
         readStream.end(watchface);
         readStream.pipe(res);
     }))
-    if (process.env.PRODUCTION) {
+    if (isProduction) {
         https.createServer({
             key: await readTextFile(PRIVATE_KEY_PATH),
             cert: await readTextFile(CERTIFICATE_PATH)
         }, app).listen(443);
     } else {
-        http.createServer(app).listen(DEV_PORT)
+        http.createServer(app).listen(80)
     }
 }
 

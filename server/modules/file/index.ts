@@ -22,3 +22,12 @@ export function readTextFile (path: string) {
     }
     return result
 }
+
+export async function isPathExists(path: string) {
+    try {
+        await lstat(path)
+        return true
+    } catch {
+        return false
+    }
+}
