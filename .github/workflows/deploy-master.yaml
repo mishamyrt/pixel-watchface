@@ -20,5 +20,5 @@ jobs:
 
     - name: Start app
       env:
-        SSL_FOLDER: /etc/letsencrypt/live/pixel.myrt.co
+        DOMAIN: pixel.myrt.co
       run: npm run docker:start
