@@ -4,9 +4,9 @@
   "description": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npm run build:frontend && npm run build:backend",
+    "build": "npm run build:backend && npm run build:frontend",
     "build:frontend": "npx parcel build --dist-dir dist/assets src/index.html",
-    "build:backend": "cd server && npx tsc && cp -rf dist/ ../dist/",
+    "build:backend": "cd server && npx tsc && cp -rf dist/ ../dist",
     "start": "node dist/app",
     "parse": "npx tsc && node app/parse",
     "pack": "npx tsc && node app/pack",
