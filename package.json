@@ -8,6 +8,7 @@
     "build:frontend": "npx parcel build --dist-dir dist/assets src/index.html",
     "build:backend": "cd server && npx tsc && cp -rf dist/ ../dist",
     "start": "node dist/app",
+    "dev": "node scripts/dev",
     "parse": "npx tsc && node app/parse",
     "pack": "npx tsc && node app/pack",
     "render": "npx tsc && node app/render"
