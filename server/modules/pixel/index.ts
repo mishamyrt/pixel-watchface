@@ -1,7 +1,7 @@
 import { readFile } from 'fs/promises'
 import { join } from 'path'
 import { collectResource, readTextFile } from '../file'
-import { BandType, pack, Resource, Watchface } from '../watchface'
+import { BandType, Resource, Watchface, encode } from '../watchface'
 import sharp from 'sharp'
 
 const RESOURCE_DIR = 'watchface'
@@ -53,5 +53,5 @@ export async function render (color: string) {
     params: meta,
     resources: await generateResources(color)
   }
-  return pack(watchface)
+  return encode(watchface)
 }

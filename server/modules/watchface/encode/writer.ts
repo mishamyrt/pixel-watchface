@@ -1,30 +1,8 @@
-import { ColorRaw } from '.'
-import { reverseMapParams } from './params'
-import {
-  BandType,
-  Color,
-  Param,
-  ParamFlag,
-  Resource,
-  ResourceType,
-  SIGN_SIZE,
-  SIGN_STRING,
-  Watchface
-} from './types'
+import { BandType, OLD_SIGN, OLD_SIGN_SIZE, ParamFlag, ResourceType } from '../constants'
+import { Color, ColorRaw, Resource, WritableParam } from '../types'
+import { fillRandomValues } from './helpers'
 
-interface WritableParam {
-  id: number;
-  value?: bigint;
-  children?: WritableParam[];
-}
-
-function fillRandomValues (arr: Uint8Array) {
-  for (let i = 0; i < arr.length; i++) {
-    arr[i] = Math.random() * 255
-  }
-}
-
-class Writer extends Array<number> {
+export class Writer extends Array<number> {
   writeCString (str: string) {
     this.push(...new TextEncoder().encode(str), 0)
     return str.length + 1
@@ -50,8 +28,8 @@ class Writer extends Array<number> {
 
   writeHeader (paramSize: number, band: BandType) {
     if (band === BandType.BAND_4) {
-      const written = this.writeCString(SIGN_STRING)
-      for (let i = 0; i < (SIGN_SIZE - written); i++) this.push(0xFF)
+      const written = this.writeCString(OLD_SIGN)
+      for (let i = 0; i < (OLD_SIGN_SIZE - written); i++) this.push(0xFF)
     } else if (band === BandType.BAND_6 || band === BandType.BAND_5) {
       // deno-fmt-ignore
       const header = new Uint8Array([
@@ -373,64 +351,4 @@ class Writer extends Array<number> {
   build () {
     return new Uint8Array(this)
   }
-}
-
-export function pack (
-  { params: mappedParams, resources, band }: Watchface
-) {
-  const params = reverseMapParams(mappedParams)
-
-  const data = new Writer()
-
-  const paramDescriptors = new Writer()
-  const paramTable = new Writer()
-
-  for (const [id, value] of Object.entries(params) as [string, Param[]][]) {
-    const offset = paramTable.length
-    let size = 0
-
-    for (const e of value) {
-      const psize = paramTable.writeParam(e)
-      size += psize
-    }
-
-    paramDescriptors.writeParam({
-      id: Number(id),
-      children: [
-        { id: 1, value: BigInt(offset) },
-        { id: 2, value: BigInt(size) }
-      ]
-    })
-  }
-
-  const mainParam = new Writer()
-  mainParam.writeParam({
-    id: 1,
-    children: [
-      { id: 1, value: BigInt(paramTable.length) },
-      { id: 2, value: BigInt(resources.length) }
-    ]
-  })
-
-  data.writeHeader(mainParam.length + paramDescriptors.length, band)
-
-  data.push(...mainParam, ...paramDescriptors)
-  data.push(...paramTable)
-
-  const resourceOffsets = new Writer()
-  const res = new Writer()
-
-  let offset = 0
-  for (const resource of resources) {
-    resourceOffsets.writeUint32LE(offset)
-    offset += res.writeResource(resource)
-  }
-
-  data.push(...resourceOffsets)
-
-  const u8 = new Uint8Array(data.length + res.length)
-  u8.set(data, 0)
-  u8.set(res, data.length)
-
-  return u8
 }

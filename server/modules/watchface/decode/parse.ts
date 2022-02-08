@@ -1,16 +1,13 @@
 import { mapParams, totalParamSize } from './params'
 import {
-  BandType,
   Color,
   Param,
-  ParamFlag,
   ParamTable,
   ParsedParam,
   ParsedResource,
-  ParsedWatchface,
-  ResourceType,
-  SIGN_SIZE
-} from './types'
+  ParsedWatchface
+} from '../types'
+import { ResourceType, ParamFlag, BandType, OLD_SIGN_SIZE } from '../constants'
 
 class WatchfaceParser {
   #bin: Uint8Array;
@@ -112,7 +109,7 @@ class WatchfaceParser {
       this.#offset = 0x4F
     } else {
       // It should be band 4
-      const restSignAreaLength = SIGN_SIZE - (sign.length + 1)
+      const restSignAreaLength = OLD_SIGN_SIZE - (sign.length + 1)
       this.#offset += restSignAreaLength
     }
 
@@ -380,6 +377,6 @@ class WatchfaceParser {
   }
 }
 
-export function parse (buffer: Uint8Array) {
+export function decode (buffer: Uint8Array) {
   return new WatchfaceParser(buffer).parse()
 }

@@ -1,20 +1,4 @@
-export const SIGN_SIZE = 0x20
-export const SIGN_STRING = 'HMDIAL'
-
-export enum ParamFlag {
-  NONE = 0,
-  UNKNOWN = 1,
-  HAS_CHILDREN = 2,
-  UNKNOWN2 = 4,
-}
-
-export enum ResourceType {
-  PALETTE,
-  BIT_8,
-  BIT_16,
-  BIT_24,
-  BIT_32,
-}
+import { BandType, ResourceType } from './constants'
 
 export interface Color {
   r: number;
@@ -71,10 +55,10 @@ export interface ParsedResource extends Resource {
   transparency: number;
 }
 
-export enum BandType {
-  BAND_4 = 345,
-  BAND_5 = 146,
-  BAND_6 = 148,
+export interface WritableParam {
+  id: number;
+  value?: bigint;
+  children?: WritableParam[];
 }
 
 export interface Watchface {
@@ -85,12 +69,4 @@ export interface Watchface {
 
 export interface ParsedWatchface extends Watchface {
   resources: ParsedResource[];
-}
-
-export const BAND_DIMS: {
-  [num in BandType]: [number, number];
-} = {
-  [BandType.BAND_4]: [120, 240],
-  [BandType.BAND_5]: [126, 294],
-  [BandType.BAND_6]: [152, 486]
 }
