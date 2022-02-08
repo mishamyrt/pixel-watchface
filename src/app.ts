@@ -39,3 +39,12 @@ button.onclick = async () => {
   const blob = await res.blob()
   return downloadFile(blob, 'pixel.bin')
 }
+
+if ('serviceWorker' in navigator) {
+  self.addEventListener('load', async () => {
+    const container = navigator.serviceWorker
+    if (container.controller === null) {
+      await container.register('sw.js')
+    }
+  })
+}
