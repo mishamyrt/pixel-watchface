@@ -35,8 +35,8 @@ function headingText (color: HSL): string {
 function card (color: HSL): string {
   return convert.hsl.hex([
     color[0],
-    range(color[1], 11, 15),
-    range(color[2], 10, 14)
+    range(color[1], 12, 15),
+    range(color[2], 8, 14)
   ])
 }
 
