@@ -2,39 +2,49 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="manifest" href="./manifest.json">
-    <title>Pixel Watch Face</title>
-    <meta name="theme-color" content="#191C1A">
-    <link rel="icon" href="favicon.svg">
-    <link rel="stylesheet" href="./styles/style.scss">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="manifest" href="./manifest.json">
+  <title>Pixel Watch Face</title>
+  <meta name="theme-color" content="#191C1A">
+  <link rel="icon" href="favicon.svg">
+  <link rel="stylesheet" href="./styles/style.scss">
 </head>
 
 <body>
-    <h1>
-        Pixel <nobr>Watch Face</nobr>
-    </h1>
-    <p>Choose from a selection of colours or specify your own to create a personalised watch face.</p>
-    <div class="preview">
-        <div class="preview-body"></div>
-    </div>
-    <div class="colorPresets">
-        <input class="colorPresets-item" type="radio" name="color" value="#FFB0CD">
-        <input class="colorPresets-item" type="radio" name="color" value="#BFC2FF">
-        <input class="colorPresets-item" type="radio" checked name="color" value="#70DBA8">
-        <input class="colorPresets-item" type="radio" name="color" value="#94D876">
-        <input class="colorPresets-item" type="radio" name="color" value="#FFB683">
-    </div>
-    <div class="actionContainer">
-        <div class="colorInput">
-            <div class="colorInput-preview"></div>
-            <input class="colorInput-input" type="text" placeholder="Enter colour">
+  <div class="container">
+    <div class="content">
+      <h1>Watch Face</h1>
+      <div class="layout">
+        <div class="preview">
+          <div class="preview-body"></div>
         </div>
-        <button>Download</button>
+        <div class="colorPresets">
+          <input class="colorPresets-item" type="radio" name="color" value="#FFB0CD">
+          <input class="colorPresets-item" type="radio" name="color" value="#F7D8FF">
+          <input class="colorPresets-item" type="radio" name="color" value="#9CF6B1" checked>
+          <input class="colorPresets-item" type="radio" name="color" value="#caff9f">
+          <input class="colorPresets-item" type="radio" name="color" value="#B2FAFF">
+          <input class="colorPresets-item" type="radio" name="color" value="#FFDCC8">
+          <input class="colorPresets-item" type="radio" name="color" value="#AEC5FF">
+          <input class="colorPresets-item" type="radio" name="color" value="#FFB683">
+        </div>
+        <div class="buttonContainer">
+          <button class="__muted">Pick custom colour</button>
+        </div>
+        <div class="buttonContainer">
+          <button class="__filled">
+            Download
+            <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M13.1009 5.62744V11.6274H14.2709L12.1009 13.7974L9.93091 11.6274H11.1009V5.62744H13.1009ZM15.1009 3.62744H9.10091V9.62744H5.10091L12.1009 16.6274L19.1009 9.62744H15.1009V3.62744ZM19.1009 18.6274H5.10091V20.6274H19.1009V18.6274Z" fill="#00210B"/>
+              </svg>
+          </button>
+        </div>
+      </div>
     </div>
-    <script type="module" src="./app.ts"></script>
+  </div>
+  <script type="module" src="./app.ts"></script>
 </body>
 
 </html>

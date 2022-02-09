@@ -9,7 +9,8 @@ export class ColorPresets {
     ) {
       buttons.forEach(node => {
         node.onchange = () => this.handleChnage()
-        node.style.backgroundColor = node.value
+        // node.onclick = () => {}
+        node.style.setProperty('--item-color', node.value)
       })
       this.handleChnage()
     }
@@ -21,6 +22,10 @@ export class ColorPresets {
       }
       this.color = node.value
       this.emit()
+    }
+
+    removeCheck () {
+      this.buttons.forEach(v => { v.checked = false })
     }
 
     onChange (fn: ChangeHandler) {

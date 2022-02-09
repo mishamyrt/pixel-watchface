@@ -1,11 +1,13 @@
-@import url(https://fonts.googleapis.com/css2?family=Google+Sans:wght@500);
+@import url(https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500);
 @import url(./modules/color-presets.scss);
 @import url(./modules/color-input.scss);
 @import url(./modules/preview.scss);
+@import url(../../node_modules/@simonwep/pickr/dist/themes/nano.min.css);
 
 * {
     box-sizing: border-box;
     transition: color .3s linear, background-color .3s linear, fill .3s linear;
+        -webkit-font-smoothing: antialiased;
 }
 
 body, html {
@@ -15,14 +17,29 @@ body, html {
     color: var(--text-color);
     font-size: 18px;
     line-height: 32px;
-    padding: 0 10px;
+    padding: 0 0;
+    margin: 0;
+}
+
+body {
+  background-color: var(--color-background);
+}
+
+.container {
+  padding: 24px 24px;
+  // background-color: rgba(5, 5, 5, 0.92);
+}
+
+.content {
+  max-width: 400px;
 }
 
 h1 {
-    font-size: 50px;
+    font-size: 37px;
     line-height: 59px;
-    font-weight: 500;
-    margin-top: 50px;
+    font-weight: 400;
+    margin-top: 40px;
+    color: var(--color-heading);
 }
 
 p {
@@ -30,21 +47,64 @@ p {
 }
 
 button {
-    height: 52px;
-    font-family: 'Google Sans', sans-serif;
-    font-size: 16px;
-    color: #201A19;
-    margin: 0;
-    border: none;
-    border-radius: 26px;
-    background: var(--accent-color);
-    padding: 2px 26px;
-    font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  font-family: 'Google Sans', sans-serif;
+  letter-spacing: 0.02em;
+  color: #00210B;
+  border: none;
+  appearance: none;
+  padding: 12px 24px;
+  background: var(--accent-color);
+  border-radius: 100px;
+  font-weight: 500;
+
+  &.__muted {
+    color: var(--color-muted);
+    background: none;
+    opacity: 0.75;
+  }
 }
+
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+// button {
+//     height: 52px;
+//     font-family: 'Google Sans', sans-serif;
+//     font-size: 16px;
+//     color: #201A19;
+//     margin: 0;
+//     border: none;
+//     border-radius: 26px;
+//     background: var(--accent-color);
+//     padding: 2px 26px;
+//     font-weight: 500;
+// }
 
 .actionContainer {
     display: flex;
     gap: 15px;
     margin-top: 15px;
     padding-bottom: 30px;
+}
+
+.pcr-app[data-theme='nano'] {
+  border-radius: 16px;
+}
+
+.pcr-app[data-theme='nano'] {
+  .pcr-selection {
+    .pcr-color-palette .pcr-palette,
+    .pcr-color-palette {
+      border-top-left-radius: 16px;
+      border-top-right-radius: 16px;
+    }
+  }
 }
