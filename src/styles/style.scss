@@ -23,19 +23,19 @@ body, html {
 
 body {
   background-color: var(--color-background);
+  min-height: 100vh;
 }
 
 .container {
-  padding: 24px 24px;
-  // background-color: rgba(5, 5, 5, 0.92);
+  padding: 50px 110px;
 }
 
 .content {
-  max-width: 400px;
+
 }
 
 h1 {
-    font-size: 37px;
+    font-size: 65px;
     line-height: 59px;
     font-weight: 400;
     margin-top: 40px;
@@ -73,6 +73,15 @@ button {
   display: flex;
   justify-content: center;
   margin-top: 20px;
+
+  &.__pick {
+    grid-column: 2/2;
+  }
+
+  &.__download {
+    grid-column: 1/1;
+    grid-row: 2;
+  }
 }
 
 // button {
@@ -106,5 +115,26 @@ button {
       border-top-left-radius: 16px;
       border-top-right-radius: 16px;
     }
+  }
+}
+
+.layout {
+  display: grid;
+  max-width: 800px;
+  grid-template-columns: 1fr 200px;
+  gap: 12px;
+}
+
+@media screen and (max-width: 600px) {
+  .layout {
+    display: block;
+  }
+
+  h1 {
+    font-size: 37px;
+  }
+
+  .container {
+    padding: 24px 24px;
   }
 }

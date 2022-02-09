@@ -1,7 +1,6 @@
 .colorPresets {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  margin-top: 12px;
+  grid-template-columns: repeat(2, 1fr);
   gap: 12px;
 
     &-item {
@@ -68,5 +67,11 @@
         &:focus {
             outline: none;
         }
+    }
+
+    @media screen and (max-width: 600px) {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 12px;
     }
 }
