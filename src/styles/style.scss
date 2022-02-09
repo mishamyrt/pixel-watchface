@@ -1,8 +1,10 @@
 @import url(https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500);
+@import url(../../node_modules/@simonwep/pickr/dist/themes/nano.min.css);
 @import url(./modules/color-presets.scss);
 @import url(./modules/color-input.scss);
 @import url(./modules/preview.scss);
-@import url(../../node_modules/@simonwep/pickr/dist/themes/nano.min.css);
+@import url(./modules/pickr.scss);
+
 
 * {
     box-sizing: border-box;
@@ -31,7 +33,12 @@ body {
 }
 
 .content {
+  transition: opacity .3s ease-out;
+  opacity: 1;
 
+  &.__faded {
+    opacity: 0.3;
+  }
 }
 
 h1 {
@@ -57,7 +64,7 @@ button {
   border: none;
   appearance: none;
   padding: 12px 24px;
-  background: var(--accent-color);
+  background: var(--color-muted);
   border-radius: 100px;
   font-weight: 500;
 
@@ -104,9 +111,6 @@ button {
     padding-bottom: 30px;
 }
 
-.pcr-app[data-theme='nano'] {
-  border-radius: 16px;
-}
 
 .pcr-app[data-theme='nano'] {
   .pcr-selection {

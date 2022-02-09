@@ -1,0 +1,45 @@
+.pcr-app[data-theme='nano'] {
+  border-radius: 24px;
+  background-color: var(--color-card);
+  box-shadow: 0 3px 41px 0px rgb(0 0 0 / 45%);
+
+  .pcr-interaction {
+    .pcr-result {
+      color: var(--color-text);
+      background-color: var(--color-input);
+      font-family: "Google Sans", sans-serif;
+      letter-spacing: 0.02em;
+      font-weight: 500;
+      padding: 8px 10px;
+      font-size: 16px;
+      border-radius: 54px;
+
+      &:focus {
+        outline: none;
+        box-shadow: none;
+      }
+    }
+
+    .pcr-save {
+      font-family: "Google Sans", sans-serif;
+      letter-spacing: 0.02em;
+      font-weight: 500;
+      border-radius: 54px;
+      padding: 8px 10px;
+      color: var(--color-background);
+      background-color: var(--color-complementary);
+    }
+  }
+  .pcr-selection {
+    .pcr-color-preview {
+      .pcr-current-color {
+        box-shadow: inset 0 0 0 3px rgb(255 255 255 / 12%);
+      }
+    }
+    .pcr-color-palette .pcr-palette,
+    .pcr-color-palette {
+      border-top-left-radius: 24px;
+      border-top-right-radius: 24px;
+    }
+  }
+}
