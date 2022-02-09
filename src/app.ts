@@ -43,21 +43,20 @@ const pickr = Pickr.create({
     }
   }
 })
-pickr.on('save', () => {
-  pickr.hide()
-})
 let isFirst = true
-pickr.on('change', () => {
-  const c = pickr.getColor().toRGBA()
-  updateAccentColor('#' + convert.rgb.hex([c[0], c[1], c[2]]))
-  if (!isFirst) {
-    presets.removeCheck()
-  }
-  isFirst = false
-})
-pickr.on('init', () => {
-  pickr.setColor(currentColor)
-})
+pickr
+  .on('save', () => pickr.hide())
+  .on('change', () => {
+    const c = pickr.getColor().toRGBA()
+    updateAccentColor('#' + convert.rgb.hex([c[0], c[1], c[2]]))
+    if (!isFirst) {
+      presets.removeCheck()
+    }
+    isFirst = false
+  })
+  .on('init', () => {
+    pickr.setColor(currentColor)
+  })
 
 function updateAccentColor (color: string) {
   const pallete = generatePallete(color)
