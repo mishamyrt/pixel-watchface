@@ -1,4 +1,4 @@
-import displayIcon from '../assets/display.svg'
+import displayIcon from '../../assets/display.svg'
 
 export function initializePreview () {
   const previewBody = document.querySelector('.preview-body')

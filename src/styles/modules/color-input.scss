@@ -9,7 +9,7 @@
     &-preview {
         width: 30px;
         height: 30px;
-        background-color: var(--accent-color);
+        background-color: var(--color-selected);
         border-radius: 100%;
     }
 
@@ -22,7 +22,7 @@
         border: none;
         appearance: none;
         width: 105px;
-        
+
         &:focus {
             border: none;
             outline: none;

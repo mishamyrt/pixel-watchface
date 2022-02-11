@@ -64,12 +64,12 @@ button {
   border: none;
   appearance: none;
   padding: 12px 24px;
-  background: var(--color-muted);
+  background: var(--color-accent);
   border-radius: 100px;
   font-weight: 500;
 
   &.__muted {
-    color: var(--color-muted);
+    color: var(--color-text);
     background: none;
     opacity: 0.75;
   }
@@ -99,7 +99,7 @@ button {
 //     margin: 0;
 //     border: none;
 //     border-radius: 26px;
-//     background: var(--accent-color);
+//     background: var(--color-selected);
 //     padding: 2px 26px;
 //     font-weight: 500;
 // }
