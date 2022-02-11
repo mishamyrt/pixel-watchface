@@ -28,7 +28,7 @@ export const AppTheme: ThemeMap = {
   ],
   accent: [
     null,
-    range(60, 70),
+    range(50, 60),
     range(60, 70)
   ],
   background: [
