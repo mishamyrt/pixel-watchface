@@ -8,13 +8,13 @@ const PRIVATE_KEY_PATH = './ssl/privkey.pem'
 const CERTIFICATE_PATH = './ssl/cert.pem'
 
 async function main () {
-  const isProduction = await isPathExists('./ssl')
+  const isSecure = await isPathExists('./ssl')
   const app = express()
     .use(express.json())
     .use('/render', createRenderRoute())
     .use('/', express.static('dist/assets'))
 
-  if (isProduction) {
+  if (isSecure) {
     https.createServer({
       key: await readTextFile(PRIVATE_KEY_PATH),
       cert: await readTextFile(CERTIFICATE_PATH)
