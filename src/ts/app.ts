@@ -14,12 +14,24 @@ function registerServiceWorker () {
   }
 }
 
+function registerReload () {
+  const socket = new WebSocket('ws://localhost:3000/')
+  socket.onmessage = e => {
+    if (e.data !== 'update') return
+    window.location.reload()
+  }
+}
+
 function app () {
   initializePreview()
   initializeColorPresets()
   initializeDownloadButton()
   initializeColorPicker()
-  registerServiceWorker()
+  if (process.env.NODE_ENV === 'production') {
+    registerServiceWorker()
+  } else {
+    registerReload()
+  }
 }
 
 document.addEventListener('DOMContentLoaded', app)
